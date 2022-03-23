@@ -107,7 +107,7 @@ Histoire de visualiser plus facilement sur quelle branche vous êtes, si vous av
 
 ```sh
 parse_git_dirty (){
-  [[ $(git status 2> /dev/null | tail -n1) != "rien à valider, la copie de travail est propre" ]] && echo "*"
+  [[ $(git status --untracked-files=no --porcelain 2> /dev/null | wc -l) -eq 0 ]] || echo "*"
 }
 
 parse_git_branch () {
